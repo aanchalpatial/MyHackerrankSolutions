@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Complete the gameOfThrones function below.
+string gameOfThrones(string s) {
+    sort(s.begin(),s.end());
+    int odd_cnt=0;
+    char ch = s[0];
+    int cnt=1;
+    for(int i=1;i<s.size();++i){
+        if(ch == s[i]) ++cnt;
+        else {
+            ch = s[i];
+            if(cnt%2==0) {
+                
+                cnt = 1;
+            }
+            else{
+                ++odd_cnt;
+            }
+        }
+        if(odd_cnt>1) return "NO";
+    }
+    return "YES";
+
+
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string s;
+    getline(cin, s);
+
+    string result = gameOfThrones(s);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
