@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+bool check_palindrome(string s){
+  
+  int mid = (s.size()+1)/2;
+  for(int i=0;i<mid;++i){
+      if(s[i] != s[s.size()-1-i]) return false;
+  }
+  return true;
+}
+// Complete the palindromeIndex function below.
+int palindromeIndex(string s) {
+    int mid = (s.size()+1)/2;
+    for(int i=0;i<mid;++i){
+        if(s[i] != s[s.size()-1-i]){
+            int index1 = i;
+            int index2 = s.size()-1-i;
+            string str1 = s,str2 = s;
+            str1.erase(index1,1);
+            str2.erase(index2,1);
+            if(check_palindrome(str1)) return index1;
+            else if(check_palindrome(str2)) return index2;
+        }
+    }
+    return -1;
+
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    int q;
+    cin >> q;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    for (int q_itr = 0; q_itr < q; q_itr++) {
+        string s;
+        getline(cin, s);
+
+        int result = palindromeIndex(s);
+
+        fout << result << "\n";
+    }
+
+    fout.close();
+
+    return 0;
+}
