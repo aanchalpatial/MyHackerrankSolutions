@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+int look_in_s(string s,char x){
+    int res=0;
+    for(int i=0;i<s.size();++i){
+        if(x==s[i]||x==s[i]+32){
+            res=1;
+            break;
+        }    
+    }
+    return res;
+}
+
+// Complete the pangrams function below.
+string pangrams(string s) {
+
+    string str="abcdefghijklmnopqrstuvwxyz";
+    for(int i=0;i<str.size();++i){
+        //if(str[i]>=65&&str[i]<=90)str[i]=str[i]+32;
+        int z=look_in_s(s,str[i]);
+        if(z==0) {//cout<<str[i]<<"-no"<<endl;
+        return "not pangram";}
+        //else {cout<<str[i]<<"-yes"<<endl;}
+        
+    }
+    return "pangram";
+    
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string s;
+    getline(cin, s);
+
+    string result = pangrams(s);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
