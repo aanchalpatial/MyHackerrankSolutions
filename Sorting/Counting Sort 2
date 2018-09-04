@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<string> split_string(string);
+void print_vector(vector<int> vv){
+    for(int i=0;i<vv.size();++i){
+        cout<<vv[i];
+    }
+    cout<<endl;
+}
+
+// Complete the countingSort function below.
+vector<int> countingSort(vector<int> arr) {
+    int n=arr.size();
+   // cout<<n<<endl;
+    vector<int> index(100,0);
+    for(int i=0;i<n;++i)
+    {
+        int ele=arr[i];
+        ++index[ele];
+    }
+    //print_vector(index);
+    for(int i=1;i<100;++i){
+        index[i]+=index[i-1];
+    }
+    //print_vector(index);
+    vector<int> sorted(n);
+    for(int i=0;i<n;++i){
+        int ele=arr[i];
+        sorted[index[ele]-1]=ele;
+        --index[ele];
+    }
+    //cout<<endl;
+    //print_vector(sorted);
+    return sorted;
+    //return arr;
+
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    vector<int> arr(n);
+    for(int i=0;i<n;++i){cin>>arr[i];}
+
+    vector<int> result = countingSort(arr);
+
+    for (int i = 0; i < result.size(); i++) {
+        cout << result[i];
+
+        if (i != result.size() - 1) {
+            cout << " ";
+        }
+    }
+
+    return 0;
+}
+
