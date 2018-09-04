@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Complete the anagram function below.
+int anagram(string s) {
+    int cnt=0;
+    if(s.size()%2==0){
+        int mid = s.size()/2;
+        string sub1 = s.substr(0,mid);
+        string sub2 = s.substr(mid,s.size()-1);
+        int n=sub1.size();
+        sort(sub1.begin(),sub1.end());
+        sort(sub2.begin(),sub2.end());
+        //cout<<sub1<<"-"<<sub2<<endl;
+        int j=0;
+        int cnt=0;
+        for(int i=0;i<sub1.size();++i){
+            //cout<<"here";
+           //if(j<sub2.size()){
+               char ch = sub1[i];
+               int flag=1;
+            for(int k=j;k<sub2.size();++k){
+                if(sub2[k]==ch){
+                    j=k+1;
+                flag=0;
+                    break;
+                }
+                         }
+               if(flag) {
+                   //cout<<ch<<"-nf ";
+               ++cnt;}
+               //else cout<<ch<<"-fd ";
+           
+        }
+        return cnt;
+    }
+    else
+        return -1;
+    
+
+
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    int q;
+    cin >> q;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    for (int q_itr = 0; q_itr < q; q_itr++) {
+        string s;
+        getline(cin, s);
+
+        int result = anagram(s);
+
+        fout << result << "\n";
+    }
+
+    fout.close();
+
+    return 0;
+}
