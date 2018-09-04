@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+
+// Complete the makingAnagrams function below.
+int makingAnagrams(string s1, string s2) {
+    
+    string sub1=s1,sub2=s2;
+    sort(sub1.begin(),sub1.end());
+    sort(sub2.begin(),sub2.end());
+    
+    int j=0;
+        int cnt=0;
+        for(int i=0;i<sub1.size();++i){
+            //cout<<"here";
+           //if(j<sub2.size()){
+               char ch = sub1[i];
+               int flag=1;
+            for(int k=j;k<sub2.size();++k){
+                if(sub2[k]==ch){
+                    j=k+1;
+                flag=0;
+                    break;
+                }
+                         }
+               if(!flag) {
+                   //cout<<ch<<"-nf ";
+               ++cnt;}
+               //else cout<<ch<<"-fd ";
+           
+        }
+    cout<<cnt<<endl;
+    int result = (s1.size()-cnt)+(s2.size()-cnt);
+        return result;
+    
+    
+
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string s1;
+    getline(cin, s1);
+
+    string s2;
+    getline(cin, s2);
+
+    int result = makingAnagrams(s1, s2);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
